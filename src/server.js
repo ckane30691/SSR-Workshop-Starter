@@ -15,10 +15,15 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, "../public")));
 
 app.get("/", (req, res) => {
-    // TODO: Fetch user
+    // Fetch user
+    const user = fetchUser();
     // TODO: Render <App user={user} /> to string
+    const reactHtml = renderToString(<App user={user} />);
     // TODO: Inject the result into renderHtml
+    const html = renderHtml(reactHtml, user);
     // TODO: Send the final HTML response
+    res.send(html);
+
 
 });
 
